@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SearchTicker } from '../screens/SearchTicker';
 
 
 const Stack = createNativeStackNavigator();
@@ -18,7 +19,7 @@ const Routes = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: true }}>
-                <Stack.Screen name="Search" component={DetailsScreen} />
+                <Stack.Screen name="Search" component={SearchTicker} />
                 <Stack.Screen name="LiveRating" component={DetailsScreen} />
             </Stack.Navigator>
         </NavigationContainer>
