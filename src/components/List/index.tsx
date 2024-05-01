@@ -1,85 +1,43 @@
-import { Avatar, AvatarImage, Box, HStack, Heading, VStack, VirtualizedList, Text } from '@gluestack-ui/themed';
+import { VirtualizedList } from '@gluestack-ui/themed';
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import { ListItem } from '../ListItem';
+import { useDispatch } from 'react-redux';
+import { setTickerSelected } from '../../store/slices/serviceDataSlice';
+import { Ticker } from '../../types/Ticker';
+import { NavigationProp, ParamListBase } from '@react-navigation/native';
 
-export const List = ({ data_ }: { data_: unknown }) => {
-    console.log('data___', data_)
+type ListProps = {
+    dataList: Ticker[]
+    navigation: NavigationProp<ParamListBase>
+}
 
-    function getItemCount(_data) {
-        return data_.length
+export const List = ({ dataList , navigation}: ListProps) => {
+    const dispatch = useDispatch();
+
+    function getItemCount(_data: unknown) {
+        return dataList.length;
     }
-    function getItem(_data, index) {
-        return data_[index]
+    function getItem(_data: unknown, index: number) {
+        return dataList[index];
     }
+
+    const handleSelect = (item: Ticker) => {
+        dispatch(setTickerSelected(item));
+        navigation.navigate('Monthly Stock Chart');
+    };
 
     return (
-        <>
-            <Box>
-                <VirtualizedList
-                    getItemCount={getItemCount}
-                    getItem={getItem}
-                    renderItem={({ item }) => (
-                        <Box
-                            borderBottomWidth="$1"
-                            borderColor="$trueGray800"
-                            sx={{
-                                _dark: {
-                                    borderColor: "$trueGray100",
-                                },
-                                "@base": {
-                                    pl: 0,
-                                    pr: 0,
-                                },
-                                "@sm": {
-                                    pl: "$4",
-                                    pr: "$5",
-                                },
-                            }}
-                            py="$2"
-                        >
-                            <HStack space="md" justifyContent="space-between">
+        <VirtualizedList
+            getItemCount={getItemCount}
+            getItem={getItem}
+            renderItem={({ item }: {item: Ticker}) => (
+                <TouchableOpacity onPress={() => handleSelect(item)}>
+                    <ListItem item={item} />
+                </TouchableOpacity>
 
-                                <VStack>
-                                    <Text
-                                        color="$coolGray800"
-                                        fontWeight="$bold"
-                                        sx={{
-                                            _dark: {
-                                                color: '$warmGray100',
-                                            },
-                                        }}
-                                    >
-                                        {item["1. symbol"]}
-                                    </Text>
-                                    <Text
-                                        color="$coolGray600"
-                                        sx={{
-                                            _dark: {
-                                                color: "$warmGray200",
-                                            },
-                                        }}
-                                    >
-                                        {item["4. region"]}
-                                    </Text>
-                                </VStack>
-                                <VStack justifyContent='center'>
-                                    <Text
-                                        color="$coolGray800"
-                                        fontWeight="$bold"
-                                        sx={{
-                                            _dark: {
-                                                color: '$warmGray100',
-                                            },
-                                        }}
-                                    >
-                                        {item["8. currency"]}
-                                    </Text>
-
-                                </VStack>
-                            </HStack>
-                        </Box>
-                    )}
-                />
-            </Box>
-        </>
-    )
+                )
+            }
+        />
+    );
 };

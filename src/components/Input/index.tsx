@@ -10,9 +10,9 @@ export const InputText = ({ text, handleText }: { text: string, handleText: (arg
         isDisabled={false}
         isInvalid={false}
         isReadOnly={false}
-        onChangeText={handleText}
-        value={text}
+
     >
-        <InputField />
+        <InputField onChangeText={handleText} value={text}
+        />
     </Input>;
 };

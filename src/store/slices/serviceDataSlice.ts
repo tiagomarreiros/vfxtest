@@ -1,13 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Ticker } from '../../types/Ticker';
 
 interface ServiceData {
     keywords: string;
-    tickerSelected: string;
+    tickerSelected?: Ticker;
 }
 
 const initialState: ServiceData = {
     keywords: '',
-    tickerSelected: '',
+    tickerSelected: undefined,
 };
 
 const serviceDataSlice = createSlice({
@@ -17,7 +18,8 @@ const serviceDataSlice = createSlice({
         setKeywords: (state, action: PayloadAction<string>) => {
             state.keywords = action.payload;
         },
-        setTickerSelected: (state, action: PayloadAction<string>) => {
+        setTickerSelected: (state, action: PayloadAction<Ticker>) => {
+            console.log('SET', action);
             state.tickerSelected = action.payload;
         },
     },

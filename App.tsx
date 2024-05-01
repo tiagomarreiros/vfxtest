@@ -5,6 +5,9 @@ import { store } from './src/store';
 import Routes from './src/routes';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
+import {
+  SafeAreaProvider,
+} from 'react-native-safe-area-context';
 
 
 function App(): React.JSX.Element {
@@ -12,7 +15,9 @@ function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <GluestackUIProvider config={config}>
-        <Routes />
+        <SafeAreaProvider>
+          <Routes />
+        </SafeAreaProvider>
       </GluestackUIProvider>
     </Provider>
   );

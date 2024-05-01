@@ -1,13 +1,20 @@
+import { Box } from '@gluestack-ui/themed';
 import React from 'react';
-import { Box, SafeAreaView } from '@gluestack-ui/themed';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
+
+    const insets = useSafeAreaInsets();
     return (
-        <SafeAreaView flex={1} edges={['right', 'left', 'top']}>
-            <Box p={15}>
-                {children}
-            </Box>
-        </SafeAreaView>
+        <Box
+            pl={15}
+            pr={15}
+            paddingTop={insets.top}
+            paddingBottom={insets.bottom}
+            flex={1}
+        >
+            {children}
+        </Box>
 
     );
-}
+};

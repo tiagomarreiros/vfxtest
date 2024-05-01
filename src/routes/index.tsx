@@ -1,27 +1,31 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Text, View } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SearchTicker } from '../screens/SearchTicker';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { LiveRating } from '../screens/LiveRating';
+import { MonthlyStockChart } from '../screens/MonthlyStockChart';
 
 
-const Stack = createNativeStackNavigator();
-function DetailsScreen() {
-    return (
-        // eslint-disable-next-line react-native/no-inline-styles
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'column', backgroundColor: 'red' }}>
-            <Text>Details Screen ffffffffffffffffffffffffffffffffff</Text>
-        </View>
-    );
-}
+const Tab = createBottomTabNavigator();
 
 const Routes = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: true }}>
-                <Stack.Screen name="Search" component={SearchTicker} />
-                <Stack.Screen name="LiveRating" component={DetailsScreen} />
-            </Stack.Navigator>
+            <Tab.Navigator screenOptions={{
+                headerShown: true, tabBarLabelStyle: {
+                    position: 'absolute',
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    textAlignVertical: 'center',
+                },
+            }}>
+                <Tab.Screen name="Search" component={SearchTicker} />
+                <Tab.Screen name="Live Rating" component={MonthlyStockChart} />
+                <Tab.Screen name="Monthly Stock Chart" component={MonthlyStockChart}
+                options={{ tabBarStyle: {display: 'none'}, tabBarItemStyle:{display: 'none'}}}/>
+            </Tab.Navigator>
         </NavigationContainer>
     );
 };
