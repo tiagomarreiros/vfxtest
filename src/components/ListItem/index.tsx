@@ -1,7 +1,8 @@
-import { Avatar, AvatarImage, Box, HStack, Heading, VStack, VirtualizedList, Text, Pressable } from '@gluestack-ui/themed';
+import { Box, HStack,  VStack, Text } from '@gluestack-ui/themed';
 import React from 'react';
+import { Ticker } from '../../types/Ticker';
 
-export const ListItem = ({ item }) => {
+export const ListItem = ({ item }: {item: Ticker}) => {
     return (
 
         <Box

@@ -22,7 +22,7 @@ const Routes = () => {
                 },
             }}>
                 <Tab.Screen name="Search" component={SearchTicker} />
-                <Tab.Screen name="Live Rating" component={MonthlyStockChart} />
+                <Tab.Screen name="Live Rating" component={LiveRating} />
                 <Tab.Screen name="Monthly Stock Chart" component={MonthlyStockChart}
                 options={{ tabBarStyle: {display: 'none'}, tabBarItemStyle:{display: 'none'}}}/>
             </Tab.Navigator>

@@ -7,8 +7,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     const insets = useSafeAreaInsets();
     return (
         <Box
-            pl={15}
-            pr={15}
+            pl={5}
+            pr={5}
             paddingTop={insets.top}
             paddingBottom={insets.bottom}
             flex={1}
