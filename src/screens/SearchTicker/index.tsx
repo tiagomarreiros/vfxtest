@@ -16,7 +16,7 @@ export const SearchTicker = ({ navigation }: {navigation: NavigationProp<ParamLi
         setText(value);
     }, [setText]);
 
-    const { data, isLoading } = useGetTickersByKeywordsQuery(text, {skip: !(text.length > 0)});
+    const { data, isLoading } = useGetTickersByKeywordsQuery(text, {skip: !(text.length > 2)});
 
     console.log(data);
     const dataFormatted = useMemo(() => {
