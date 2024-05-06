@@ -1,12 +1,14 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { InputText } from '../../components/Input';
 import { Box, Center } from '@gluestack-ui/themed';
-import { Text } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { useGetTickersByKeywordsQuery } from '../../api/alphaApi';
 import { List } from '../../components/List';
 import { Layout } from '../../components/Layout';
 import { SpinnerVfx } from '../../components/Spinner';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
+import { ToastVfx } from '../../components/Toast';
+import { SerializedError } from '@reduxjs/toolkit';
 
 export const SearchTicker = ({ navigation }: {navigation: NavigationProp<ParamListBase>}) => {
 
@@ -16,7 +18,7 @@ export const SearchTicker = ({ navigation }: {navigation: NavigationProp<ParamLi
         setText(value);
     }, [setText]);
 
-    const { data, isLoading } = useGetTickersByKeywordsQuery(text, {skip: !(text.length > 2)});
+    const { data, isLoading, error } = useGetTickersByKeywordsQuery(text, {skip: !(text.length > 1)});
 
     console.log(data);
     const dataFormatted = useMemo(() => {
@@ -47,9 +49,16 @@ export const SearchTicker = ({ navigation }: {navigation: NavigationProp<ParamLi
                 isLoading ? <SpinnerVfx size="large"/> : dataFormatted?.length ?
                 <List dataList={dataFormatted} navigation={navigation} /> :
                 <Center>
-                    <Text>No data</Text>
+                    <Text style={styles.text}>No data</Text>
                 </Center>
             }
+            {error && <ToastVfx title="Error" message={error.message}/>}
         </Layout>
     );
 };
+
+const styles = StyleSheet.create({
+    text: {
+      color: 'black',
+    },
+  });

@@ -31,9 +31,9 @@ export const List = ({ dataList , navigation}: ListProps) => {
         <VirtualizedList
             getItemCount={getItemCount}
             getItem={getItem}
-            renderItem={({ item, index }: {item: Ticker, index: number}) => (
-                <TouchableOpacity onPress={() => handleSelect(item)}>
-                    <ListItem item={item} key={index} />
+            renderItem={({ item, index }) => (
+                <TouchableOpacity key={index} onPress={() => handleSelect(item as Ticker)} >
+                    <ListItem item={item as Ticker} />
                 </TouchableOpacity>
 
                 )
