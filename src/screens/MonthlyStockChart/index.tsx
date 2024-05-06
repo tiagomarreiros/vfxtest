@@ -1,6 +1,6 @@
 import React from 'react';
 import {  Text, StyleSheet } from 'react-native';
-import { Chart, ChartVFX } from '../../components/Chart';
+import { ChartVFX } from '../../components/Chart';
 import { Box } from '@gluestack-ui/themed';
 import { useGetDataMonthlyQuery } from '../../api/alphaApi';
 import { useSelector } from 'react-redux';
