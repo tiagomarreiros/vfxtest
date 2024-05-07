@@ -2,8 +2,8 @@ import { useCallback, useMemo } from 'react';
 
 export const useFormatData = ({ data, keyIndex, period }: {data: unknown, keyIndex: string, period?: string}) => {
 
-    const getLabel = useCallback((stockDate) => {
-        if (period === 'FX_MONTHLY'){
+    const getLabel = useCallback((stockDate: string) => {
+        if (!period || period === 'FX_MONTHLY'){
             const date =  new Date(stockDate);
             const month = date.toLocaleString('default', { month: 'short' });
             const year = date.getFullYear();

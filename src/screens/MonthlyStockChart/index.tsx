@@ -24,11 +24,7 @@ export const MonthlyStockChart = () => {
         minValueX,
         maxValueX,
     } = useFormatData({data, keyIndex: 'Monthly Time Series'});
-    console.log('MONTHLY DATA',  dataFormatted,
-    minValueY,
-    maxValueY,
-    minValueX,
-    maxValueX);
+
     return (
         <Layout>
             <CardApp>

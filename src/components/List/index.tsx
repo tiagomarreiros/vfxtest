@@ -38,6 +38,7 @@ export const List = ({ dataList , navigation}: ListProps) => {
 
                 )
             }
+            keyExtractor={(i, index) => index.toString()}
         />
     );
 };
