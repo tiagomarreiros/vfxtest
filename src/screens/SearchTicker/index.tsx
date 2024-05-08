@@ -8,7 +8,6 @@ import { Layout } from '../../components/Layout';
 import { SpinnerVfx } from '../../components/Spinner';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';
 import { ToastVfx } from '../../components/Toast';
-import { SerializedError } from '@reduxjs/toolkit';
 
 export const SearchTicker = ({ navigation }: {navigation: NavigationProp<ParamListBase>}) => {
 
@@ -20,7 +19,6 @@ export const SearchTicker = ({ navigation }: {navigation: NavigationProp<ParamLi
 
     const { data, isLoading, error } = useGetTickersByKeywordsQuery(text, {skip: !(text.length > 1)});
 
-    console.log(data);
     const dataFormatted = useMemo(() => {
         if (data && data.bestMatches) {
             return data.bestMatches.map(item => {

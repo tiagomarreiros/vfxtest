@@ -19,7 +19,6 @@ const serviceDataSlice = createSlice({
             state.keywords = action.payload;
         },
         setTickerSelected: (state, action: PayloadAction<Ticker>) => {
-            console.log('SET', action);
             state.tickerSelected = action.payload;
         },
     },
